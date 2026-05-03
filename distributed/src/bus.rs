@@ -45,6 +45,9 @@ impl SoftBus {
     ///
     /// Returns `true` if the device was found and removed.
     pub fn deregister(&mut self, id: DeviceId) -> bool {
+        if self.count == 0 {
+            return false;
+        }
         for i in 0..self.count {
             if self.routes[i].0 == id {
                 self.routes[i] = self.routes[self.count - 1];

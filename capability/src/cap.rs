@@ -86,9 +86,11 @@ impl<T: CapObject> Cap<T> {
     /// * [`CapError::InsufficientRights`] — this capability does not hold
     ///   [`Rights::GRANT`].
     ///
-    /// On success the *parent* (`self`) is **consumed**: authority is
-    /// transferred to the derived pair.  If you need to keep the parent, derive
-    /// from a separate holder.
+    /// # Note on error handling
+    /// `self` is always consumed (moved into this method) regardless of
+    /// success or failure.  On error the underlying object is dropped and
+    /// `on_revoke` is called — the caller must not assume the parent survives
+    /// a failed derivation.
     pub fn derive(mut self, new_rights: Rights, new_badge: Badge) -> Result<Cap<T>, CapError> {
         // Rights-escalation is checked first — attempting to request more than
         // the parent holds is a programming error regardless of GRANT.
@@ -99,8 +101,8 @@ impl<T: CapObject> Cap<T> {
             return Err(CapError::InsufficientRights);
         }
         // Take the object out — parent is now empty (drop will not call on_revoke).
-        let object = self.object.take().expect("Cap object must be present");
-        Ok(Cap {
+        let object = self.object.take()
+            .expect("Cap internal invariant violated: object field was None before derive");        Ok(Cap {
             object: Some(object),
             rights: new_rights,
             badge:  new_badge,
@@ -122,7 +124,9 @@ impl<T: CapObject> Cap<T> {
     /// object and is responsible for cleanup.
     #[inline]
     pub fn into_object(mut self) -> T {
-        self.object.take().expect("Cap object must be present")
+        // Take the object out — parent is now empty (drop will not call on_revoke).
+        self.object.take()
+            .expect("Cap internal invariant violated: object field was None before into_object")
     }
 
     /// Immutably borrow the underlying object.
@@ -130,7 +134,8 @@ impl<T: CapObject> Cap<T> {
     /// Requires `required` rights.
     pub fn borrow_object(&self, required: Rights) -> Result<&T, CapError> {
         if self.rights.contains(required) {
-            Ok(self.object.as_ref().expect("Cap object must be present"))
+            Ok(self.object.as_ref()
+                .expect("Cap internal invariant violated: object field was None"))
         } else {
             Err(CapError::InsufficientRights)
         }
@@ -141,7 +146,8 @@ impl<T: CapObject> Cap<T> {
     /// Requires `required` rights.
     pub fn borrow_object_mut(&mut self, required: Rights) -> Result<&mut T, CapError> {
         if self.rights.contains(required) {
-            Ok(self.object.as_mut().expect("Cap object must be present"))
+            Ok(self.object.as_mut()
+                .expect("Cap internal invariant violated: object field was None"))
         } else {
             Err(CapError::InsufficientRights)
         }
