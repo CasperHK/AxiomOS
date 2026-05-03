@@ -1,0 +1,18 @@
+[package]
+name        = "ipc"
+description = "IPC endpoints as capabilities — seL4-style synchronous message passing in Rust"
+version.workspace    = true
+edition.workspace    = true
+authors.workspace    = true
+license.workspace    = true
+repository.workspace = true
+keywords.workspace   = true
+
+[dependencies]
+capability = { path = "../capability" }
+bitflags   = { workspace = true }
+spin       = { workspace = true }
+
+[features]
+default = []
+std     = ["capability/std"]

@@ -1,0 +1,19 @@
+[package]
+name        = "distributed"
+description = "HarmonyOS-inspired distributed soft-bus and cross-device scheduling"
+version.workspace    = true
+edition.workspace    = true
+authors.workspace    = true
+license.workspace    = true
+repository.workspace = true
+keywords.workspace   = true
+
+[dependencies]
+capability = { path = "../capability" }
+ipc        = { path = "../ipc" }
+bitflags   = { workspace = true }
+spin       = { workspace = true }
+
+[features]
+default = []
+std     = ["capability/std", "ipc/std"]

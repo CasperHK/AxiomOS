@@ -1,0 +1,21 @@
+[package]
+name        = "capability"
+description = "First-class linear-type capability system (Ownership-is-Capability model)"
+version.workspace    = true
+edition.workspace    = true
+authors.workspace    = true
+license.workspace    = true
+repository.workspace = true
+keywords.workspace   = true
+
+[dependencies]
+bitflags = { workspace = true }
+spin     = { workspace = true }
+
+[features]
+default = []
+# Enable std for host-side tests; kernel builds with no_std
+std = []
+
+[dev-dependencies]
+# nothing extra needed

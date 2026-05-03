@@ -1,0 +1,23 @@
+[workspace]
+members = [
+    "kernel",
+    "capability",
+    "ipc",
+    "memory",
+    "distributed",
+]
+resolver = "2"
+
+[workspace.package]
+version      = "0.1.0"
+edition      = "2021"
+authors      = ["AxiomOS Contributors"]
+license      = "MIT OR Apache-2.0"
+repository   = "https://github.com/CasperHK/AxiomOS"
+keywords     = ["microkernel", "sel4", "capability", "distributed", "rust"]
+categories   = ["os", "no-std"]
+
+[workspace.dependencies]
+# shared deps used across crates
+bitflags    = "2"
+spin        = "0.9"
