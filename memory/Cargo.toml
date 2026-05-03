@@ -1,0 +1,17 @@
+[package]
+name        = "memory"
+description = "Memory objects as capabilities — frames, UntypedMemory, page tables"
+version.workspace    = true
+edition.workspace    = true
+authors.workspace    = true
+license.workspace    = true
+repository.workspace = true
+keywords.workspace   = true
+
+[dependencies]
+capability = { path = "../capability" }
+bitflags   = { workspace = true }
+
+[features]
+default = []
+std     = ["capability/std"]

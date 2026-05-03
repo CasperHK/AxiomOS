@@ -1,0 +1,31 @@
+[package]
+name        = "kernel"
+description = "AxiomOS microkernel entry point and top-level orchestration"
+version.workspace    = true
+edition.workspace    = true
+authors.workspace    = true
+license.workspace    = true
+repository.workspace = true
+keywords.workspace   = true
+
+[[bin]]
+name = "kernel"
+path = "src/main.rs"
+
+[dependencies]
+capability  = { path = "../capability" }
+ipc         = { path = "../ipc" }
+memory      = { path = "../memory" }
+distributed = { path = "../distributed" }
+bitflags    = { workspace = true }
+spin        = { workspace = true }
+
+[features]
+default = ["std"]
+# host build for integration tests (enables std in all deps)
+std = [
+    "capability/std",
+    "ipc/std",
+    "memory/std",
+    "distributed/std",
+]
