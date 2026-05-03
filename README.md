@@ -12,14 +12,16 @@ Rust-Harmony-seL4 redefines the paradigm of operating system kernels by integrat
 We address the critical gaps in the current ecosystem: seL4 lacks distributed capabilities; HarmonyOS relies on C/C++ which poses inherent safety risks; and Redox's architecture remains too simplistic for enterprise-grade distributed scenarios. This project is the ultimate solution for the post-quantum era.
 
 ------------------------------
-## 🔒 Key Advantages## 🛡️ Top-Tier Security
+## 🔒 Key Advantages
+
+### 🛡️ Top-Tier Security
 
    1. Compiler-Enforced Safety: Rust's ownership model eradicates memory-related vulnerabilities.
    2. Formal Verification: Inherits the seL4 mechanism for mathematically verified process isolation and access control.
    3. Minimal Attack Surface: Microkernel design ensures drivers and services run in isolated user-space.
    4. Quantum-Resilient Architecture: Security is derived from structural isolation rather than just legacy cryptography, providing immunity against future quantum-based exploits.
 
-## 🧩 All-Scenario Distributed Architecture
+### 🧩 All-Scenario Distributed Architecture
 
    1. Harmony Ecosystem Compatible: Supports distributed soft-bus, cross-device communication, and device virtualization.
    2. Universal Deployment: Seamlessly scales from IoT sensors and smartphones to automotive systems and high-performance servers.
@@ -36,7 +38,7 @@ We address the critical gaps in the current ecosystem: seL4 lacks distributed ca
 
 ------------------------------
 ## 🏗️ Technical Architecture
-
+```text
 ┌─────────────────────────────────────────────────────────────────┐
 │ Upper Services: Distributed Scheduling, Cross-Device Comms      │
 ├─────────────────────────────────────────────────────────────────┤
@@ -46,6 +48,7 @@ We address the critical gaps in the current ecosystem: seL4 lacks distributed ca
 ├─────────────────────────────────────────────────────────────────┤
 │ Implementation: 100% Pure Rust, Memory Safety Mechanisms        │
 └─────────────────────────────────────────────────────────────────┘
+```
 
 ------------------------------
 ## 📊 Comparison
