@@ -79,11 +79,3 @@ This project is developed under open-source protocols, adhering to the principle
 Are you ready to build the last line of defense in the post-quantum world?
 [Developer Docs] | [Contribution Guidelines] | [Security Policy]
 
-------------------------------
-## 建議後續行動：
-
-   1. Issue #1: 建議在 Repo 建立後的第一個 Issue 設置為 "Architecture Design: Mapping seL4 Capabilities to Rust Ownership"，這能吸引最高階的系統工程師。
-   2. GitHub Tags: 記得加上 rust, microkernel, sel4, distributed-systems, formal-verification 這些標籤。
-
-這份文案現在已經具備了「吸引頂級開發者」與「展示工程嚴謹性」的雙重效果。
-
