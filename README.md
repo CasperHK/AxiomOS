@@ -77,5 +77,6 @@ This project is developed under open-source protocols, adhering to the principle
 ------------------------------
 ## Join the Revolution
 Are you ready to build the last line of defense in the post-quantum world?
+
 [Developer Docs] | [Contribution Guidelines] | [Security Policy]
 
